@@ -2,22 +2,27 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  position: relative; /* for fixed underline */
 }
 
 .nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 16px 0 0; /* remove left padding so first item touches left edge */
+  gap: 12px;
   height: 50px;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
   position: relative;
   scrollbar-width: none; /* Firefox */
+  cursor: grab;
 }
 
 .nav::-webkit-scrollbar {
@@ -28,7 +33,11 @@
   border-radius: 4px;
 }
 
-.nav::after {
+.grabbing {
+  cursor: grabbing;
+}
+
+.subheader::after {
   content: "";
   position: absolute;
   left: 0px;
@@ -63,8 +72,8 @@
 /* Pienemmillä ruuduilla fonttikoko ja gap pienenee */
 @media (max-width: 800px) {
   .nav {
-    max-width: 98vw;
-    padding: 0 8px;
+  max-width: 98vw;
+  padding: 0 8px 0 0; /* keep left at 0 on small screens too */
   }
   .category {
     line-height: 38px;
@@ -74,7 +83,7 @@
   .subheader {
     min-height: 38px;
   }
-  .nav::after {
+  .subheader::after {
     left: 5%;
     right: 5%;
   }
