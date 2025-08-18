@@ -55,7 +55,13 @@
   text-decoration: none;
   white-space: nowrap;
   pointer-events: auto;
-  transition: font-size 0.2s;
+  transition: font-size 0.2s, transform 0.25s ease;
+  will-change: transform;
+}
+
+/* When scrolling starts, lift the logo slightly */
+.stickyActive .logo {
+  transform: translateY(-12px);
 }
 
 .link {
