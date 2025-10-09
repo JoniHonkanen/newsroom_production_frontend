@@ -2,8 +2,8 @@
 
 "use client";
 
-import Link from "next/link";
-import { useParams } from "next/navigation";
+import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
 import { useEffect, useRef } from "react";
 import styles from "./SubHeader.module.css";
 
@@ -12,8 +12,7 @@ function capitalize(str) {
 }
 
 export default function SubHeader({ topCategories }) {
-  const params = useParams();
-  const locale = params?.locale || "fi";
+  const locale = useLocale();
   const navRef = useRef(null);
 
   // Improve desktop UX: scroll horizontally with mouse wheel if overflowed
@@ -95,15 +94,19 @@ export default function SubHeader({ topCategories }) {
   return (
     <header className={styles.subheader}>
       <nav ref={navRef} className={styles.nav}>
-        {topCategories.map((category) => (
-          <Link 
-            key={category.id} 
-            href={`/${locale}?category=${category.slug}`}
-            className={styles.category}
-          >
-            {`${capitalize(category.slug)} (${category.count})`}
-          </Link>
-        ))}
+        {topCategories && topCategories.length > 0 ? (
+          topCategories.map((category) => (
+            <Link 
+              key={category.id} 
+              href={`/?category=${category.slug}`}
+              className={styles.category}
+            >
+              {`${capitalize(category.slug)} (${category.count})`}
+            </Link>
+          ))
+        ) : (
+          <p>No categories available</p>
+        )}
       </nav>
     </header>
   );

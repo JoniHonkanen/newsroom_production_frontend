@@ -12,8 +12,9 @@ interface NewsPageParams {
   id: string;
 }
 
-export default async function NewsPage({ params }: { params: NewsPageParams }) {
-  const { locale, slug, id: idWithSlug } = await params;
+export default async function NewsPage({ params }: { params: Promise<NewsPageParams> }) {
+  const resolvedParams = await params;
+  const { locale, slug, id: idWithSlug } = resolvedParams;
 
   // Tarkista että slug vastaa kieltä
   if (SLUGS[locale] !== slug) return notFound();

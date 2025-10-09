@@ -57,7 +57,11 @@ export default async function Home({ searchParams }: HomeProps) {
         },
       });
 
-      if (!data?.newsByCategory || data.newsByCategory.length === 0) {
+      // Show page if either regular or featured news exist
+      if (
+        (!data?.newsByCategory || data.newsByCategory.length === 0) &&
+        (!data?.featuredNewsByCategory || data.featuredNewsByCategory.length === 0)
+      ) {
         notFound();
       }
 
@@ -145,8 +149,6 @@ export default async function Home({ searchParams }: HomeProps) {
       featuredOrderBy: { field: "ID", order: "DESC" },
     },
   });
-
-  console.log("Fetched data:", data);
 
   if (!data?.news) {
     return <p>No news available</p>;
