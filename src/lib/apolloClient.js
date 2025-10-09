@@ -6,10 +6,8 @@ export function createApolloClient(headers = {}) {
     // Palvelinpuolella ssrMode = true, clientpuolella automaattisesti false
     ssrMode: typeof window === "undefined",
     link: new HttpLink({
-      uri:
-        process.env.NODE_ENV === "development"
-          ? `${baseUrl}/graphql` // kehitysportti
-          : "https://your-production-api/graphql", //TODO:: ADD THIS LATER
+      // Prefer explicit production URL; fallback to baseUrl + /graphql
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_URL || `${baseUrl}/graphql`,
       credentials: "include",
       headers, // serverkutsuissa Next 15:s headers()
       fetch,
