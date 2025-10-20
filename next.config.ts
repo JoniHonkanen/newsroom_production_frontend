@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
         "images.unsplash.com",
         "placehold.co",
         "localhost",
+        "api.gptnewsroom.fi",
       ],
   },
 };
