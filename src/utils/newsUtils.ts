@@ -26,7 +26,10 @@ export function createNewsUrl(
 ): string {
   const slug = SLUGS[locale] || SLUGS.fi;
   const newsSlug = createNewsSlug(title, id);
-  return `/${locale}/${slug}/${newsSlug}`;
+  // Return a locale-relative path. Locale prefix will be added by the
+  // i18n-aware Link component from '@/i18n/navigation'. This avoids
+  // duplicate locale segments like '/en/en/...'.
+  return `/${slug}/${newsSlug}`;
 }
 
 // Päivämäärän formatointi uutisille
