@@ -36,28 +36,28 @@ export function createNewsUrl(
 export function formatNewsDate(dateString: string, locale: Locale): string {
   try {
     const date = new Date(dateString);
-
-    // Tarkista että päivämäärä on validi
+    
     if (isNaN(date.getTime())) {
       return "";
     }
 
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
+    const now = new Date();
+    
+    // Lasketaan päivien ero (huomioi myös aikavyöhykkeet)
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const startOfNewsDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const diffDays = Math.floor((startOfToday.getTime() - startOfNewsDay.getTime()) / (1000 * 60 * 60 * 24));
 
-    // Tarkista onko sama päivä
-    const isSameDay = date.toDateString() === today.toDateString();
-    const isYesterday = date.toDateString() === yesterday.toDateString();
-
-    if (isSameDay) {
+    if (diffDays === 0) {
       // Tänään - näytä kellonaika
       return date.toLocaleTimeString(locale, {
         hour: "2-digit",
         minute: "2-digit",
         hour12: false,
       });
-    } else if (isYesterday) {
+    }
+    
+    if (diffDays === 1) {
       // Eilen
       const yesterdayTexts = {
         fi: "Eilen",
@@ -65,15 +65,15 @@ export function formatNewsDate(dateString: string, locale: Locale): string {
         sv: "Igår",
       };
       return yesterdayTexts[locale] || yesterdayTexts.fi;
-    } else {
-      // Muut päivät - näytä päivämäärä
-      return date.toLocaleDateString(locale, {
-        day: "numeric",
-        month: "numeric",
-        year:
-          date.getFullYear() !== today.getFullYear() ? "numeric" : undefined,
-      });
     }
+
+    // Muut päivät - näytä päivämäärä
+    return date.toLocaleDateString(locale, {
+      day: "numeric",
+      month: "numeric",
+      year: date.getFullYear() !== now.getFullYear() ? "numeric" : undefined,
+    });
+    
   } catch (error) {
     console.error("Error formatting date:", error);
     return "";
@@ -125,6 +125,17 @@ export function formatCategories(categories: string[]): string[] {
   return categories.map(
     (category) => category.charAt(0).toUpperCase() + category.slice(1)
   );
+}
+
+export function formatFeaturedCategories(categories: string[]): string[] {
+  console.log(categories);
+  console.log(categories.length);
+  
+  return categories.map((category, index) => {
+    const formatted = category.charAt(0).toUpperCase() + category.slice(1);
+    // Lisää pilkku kaikille paitsi viimeiselle
+    return index < categories.length - 1 ? formatted + ", " : formatted;
+  });
 }
 
 // Tarkista onko lead ja summary erilaisia

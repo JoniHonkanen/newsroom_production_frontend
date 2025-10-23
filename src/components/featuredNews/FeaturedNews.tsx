@@ -8,7 +8,7 @@ import {
   formatNewsDate,
   generateImageAlt,
   getLocalizedText,
-  formatCategories,
+  formatFeaturedCategories,
   shouldShowSummary,
   getNewsTitle,
   type Locale,
@@ -41,7 +41,15 @@ export default function FeaturedNews({ news }: { news: NewsItem }) {
     <article className={styles.featuredNews}>
       <Link href={url} className={styles.cardLink}>
         <div className={styles.featuredContent}>
-          <h2 className={styles.title}>{news.lead || news.summary}</h2>
+          <h2 className={styles.title}>
+            {(() => {
+              const text = news.lead || news.summary;
+              const maxLength = 200;
+              return text?.length > maxLength
+                ? `${text.substring(0, maxLength)}...`
+                : text;
+            })()}
+          </h2>
 
           {/* Näytä summary vain jos lead on olemassa ja eri kuin summary */}
           {shouldShowSummary(news.lead, news.summary) && (
@@ -72,11 +80,13 @@ export default function FeaturedNews({ news }: { news: NewsItem }) {
                 className={styles.categories}
                 aria-label={getLocalizedText.categories(locale)}
               >
-                {formatCategories(news.categories).map((category, index) => (
-                  <span key={index} className={styles.category}>
-                    {category}
-                  </span>
-                ))}
+                {formatFeaturedCategories(news.categories).map(
+                  (category, index) => (
+                    <span key={index} className={styles.category}>
+                      {category}
+                    </span>
+                  )
+                )}
               </div>
             )}
           </div>

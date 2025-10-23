@@ -59,7 +59,11 @@ export default function NewsGridHorizontal({
           <article key={news.id} className={styles.card}>
             <Link href={url} className={styles.cardLink}>
               <div className={styles.content}>
-                <h3 className={styles.title}>{news.lead}</h3>
+                <h3 className={styles.title}>
+                  {news.lead && news.lead.length > 200
+                    ? `${news.lead.substring(0, 200)}...`
+                    : news.lead}
+                </h3>
                 <div className={styles.meta}>
                   {firstCategory && (
                     <span className={styles.category}>{firstCategory}</span>

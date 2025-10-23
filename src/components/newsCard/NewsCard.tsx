@@ -36,7 +36,11 @@ export default function NewsCard({ news }: { news: NewsItem }) {
     <article className={styles.card}>
       <Link href={url} className={styles.cardLink}>
         <div className={styles.content}>
-          <h3 className={styles.title}>{news.lead}</h3>
+          <h3 className={styles.title}>
+            {news.lead && news.lead.length > 200
+              ? `${news.lead.substring(0, 200)}...`
+              : news.lead}
+          </h3>
 
           {/* Näytä summary vain jos lead on olemassa ja eri kuin summary */}
           {shouldShowSummary(news.lead, news.summary) && (

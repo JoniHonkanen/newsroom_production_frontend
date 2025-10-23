@@ -4,11 +4,11 @@ import Image from "next/image";
 import styles from "./NewsGridVertical.module.css";
 import type { NewsItem } from "@/types/news";
 import { getRelativeTime } from "@/utils/date";
-import { 
+import {
   createNewsUrl,
   generateImageAlt,
   getNewsTitle,
-  type Locale 
+  type Locale,
 } from "@/utils/newsUtils";
 
 // Shown in news article list view
@@ -22,13 +22,14 @@ export default function NewsGridVertical({
   newsList: NewsItem[];
 }) {
   const locale = useLocale() as Locale;
-  
+
   return (
     <div className={styles.grid}>
       {newsList.map((news) => {
         // Varmista että id on number-tyyppiä
-        const newsId = typeof news.id === 'string' ? parseInt(news.id, 10) : news.id;
-        
+        const newsId =
+          typeof news.id === "string" ? parseInt(news.id, 10) : news.id;
+
         // Tarkista että ID on validi numero
         if (isNaN(newsId)) {
           console.warn(`Invalid news ID: ${news.id}`);
@@ -43,9 +44,10 @@ export default function NewsGridVertical({
         const imageAlt = generateImageAlt(news, locale);
 
         // Käytä getRelativeTime funktiota, varmista että päivämäärä on olemassa
-        const displayDate = news.published_at || news.updated_at || news.created_at;
+        const displayDate =
+          news.published_at || news.updated_at || news.created_at;
         const relativeTime = displayDate ? getRelativeTime(displayDate) : "";
-        
+
         return (
           <article key={news.id} className={styles.card}>
             <Link href={url} className={styles.cardLink}>
@@ -66,11 +68,13 @@ export default function NewsGridVertical({
               </div>
 
               <div className={styles.content}>
-                <h3 className={styles.title}>{news.lead}</h3>
+                <h3 className={styles.title}>
+                  {news.lead && news.lead.length > 200
+                    ? `${news.lead.substring(0, 200)}...`
+                    : news.lead}
+                </h3>
                 {relativeTime && (
-                  <time className={styles.time}>
-                    {relativeTime}
-                  </time>
+                  <time className={styles.time}>{relativeTime}</time>
                 )}
               </div>
             </Link>
