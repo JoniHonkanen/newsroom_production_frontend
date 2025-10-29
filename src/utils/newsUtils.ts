@@ -3,6 +3,38 @@
 export const SLUGS = { fi: "uutinen", en: "news", sv: "nyhet" } as const;
 export type Locale = keyof typeof SLUGS;
 
+const DEFAULT_TIME_ZONE =
+  process.env.NEXT_PUBLIC_TIME_ZONE || "Europe/Helsinki";
+
+const dayFormatter = new Intl.DateTimeFormat("en-CA", {
+  timeZone: DEFAULT_TIME_ZONE,
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
+
+const getDayStartInTimezone = (date: Date): number => {
+  const formatted = dayFormatter.format(date); // YYYY-MM-DD in target TZ
+  return Date.parse(formatted); // Midnight in UTC for that day
+};
+
+const formatTimeWithColon = (date: Date, locale: Locale): string => {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    hourCycle: "h23",
+    timeZone: DEFAULT_TIME_ZONE,
+  });
+
+  const parts = formatter.formatToParts(date);
+  const hour = parts.find((part) => part.type === "hour")?.value ?? "00";
+  const minute =
+    parts.find((part) => part.type === "minute")?.value ?? "00";
+
+  return `${hour}:${minute}`;
+};
+
 // Apufunktio SEO-ystävällisen slug:n luomiseen
 export function createNewsSlug(title: string, id: number): string {
   const cleanTitle = title
@@ -43,18 +75,14 @@ export function formatNewsDate(dateString: string, locale: Locale): string {
 
     const now = new Date();
     
-    // Lasketaan päivien ero (huomioi myös aikavyöhykkeet)
-    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const startOfNewsDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    const diffDays = Math.floor((startOfToday.getTime() - startOfNewsDay.getTime()) / (1000 * 60 * 60 * 24));
+    // Lasketaan päivien ero halutussa aikavyöhykkeessä
+    const todayStart = getDayStartInTimezone(now);
+    const newsDayStart = getDayStartInTimezone(date);
+    const diffDays = Math.floor((todayStart - newsDayStart) / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) {
       // Tänään - näytä kellonaika
-      return date.toLocaleTimeString(locale, {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
+      return formatTimeWithColon(date, locale);
     }
     
     if (diffDays === 1) {
@@ -72,6 +100,7 @@ export function formatNewsDate(dateString: string, locale: Locale): string {
       day: "numeric",
       month: "numeric",
       year: date.getFullYear() !== now.getFullYear() ? "numeric" : undefined,
+      timeZone: DEFAULT_TIME_ZONE,
     });
     
   } catch (error) {
