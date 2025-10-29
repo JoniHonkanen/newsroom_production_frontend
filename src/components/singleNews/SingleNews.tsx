@@ -296,7 +296,7 @@ export function SingleNews({
           <footer className={styles.articleFooter}>
             {news.sources && news.sources.length > 0 && (
               <div className={styles.sources}>
-                <h3 className={styles.sourcesTitle}>Sources</h3>
+                <h3 className={styles.sourcesTitle}>Lähteet</h3>
                 <ul className={styles.sourcesList}>
                   {news.sources.map((source, index) => {
                     if (isSourceObject(source)) {
