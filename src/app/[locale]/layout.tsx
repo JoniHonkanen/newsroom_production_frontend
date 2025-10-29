@@ -11,6 +11,8 @@ import {
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import SidebarComponent from "@/components/sidebar/SidebarComponent";
+import styles from "./layout.module.css";
 
 import "../globals.css";
 import Header from "@/components/headers/Header";
@@ -77,7 +79,12 @@ export default async function LocaleLayout({
       >
         <NextIntlClientProvider locale={locale}>
           <Header />
-          <div className="content_wrapper">{children}</div>
+          <div className={styles.layoutShell}>
+            <div className={styles.sidebarWrapper}>
+              <SidebarComponent />
+            </div>
+            <div className="content_wrapper">{children}</div>
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>
