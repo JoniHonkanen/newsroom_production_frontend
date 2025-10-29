@@ -12,23 +12,19 @@
     --sidebar-gap: 24px;
     position: fixed;
     top: 110px;
-    left: calc(50% - var(--content-max-width) / 2 - var(--sidebar-width) - var(--sidebar-gap));
+    left: calc(
+      50% - var(--content-max-width) / 2 - var(--sidebar-width) -
+        var(--sidebar-gap)
+    );
     width: var(--sidebar-width);
     z-index: 40;
-    display: block;
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1650px) {
   .sidebarWrapper {
-    --sidebar-width: 260px;
-    --sidebar-gap: 28px;
-  }
-}
-
-@media (min-width: 1600px) {
-  .sidebarWrapper {
-    --sidebar-width: 300px;
+    --sidebar-width: 240px;
     --sidebar-gap: 32px;
+    display: block;
   }
 }
