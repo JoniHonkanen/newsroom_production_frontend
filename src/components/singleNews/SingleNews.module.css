@@ -31,10 +31,20 @@
   height: 100%;
 }
 
-.image{
+.image {
   display: block;
-  margin: auto;
-  margin-bottom: 15px;
+  margin: 0 auto 15px;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.articleBody :global(img) {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
 }
 
 .heroOverlay {
