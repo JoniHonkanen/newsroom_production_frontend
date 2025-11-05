@@ -5,6 +5,7 @@ import FeaturedNews from "@/components/featuredNews/FeaturedNews";
 import NewsCard from "@/components/newsCard/NewsCard";
 import NewsGridHorizontal from "@/components/newsGridHorizontal/NewsGridHorizontal";
 import NewsGridVertical from "@/components/newsGridVertical/NewsGridVertical";
+import AdBanner from "@/components/adBanner/AdBanner";
 import styles from "../page.module.css";
 import { GET_NEWS, GET_NEWS_BY_CATEGORY } from "@/graphql/queries";
 import { headers } from "next/headers";
@@ -115,14 +116,20 @@ export default async function Home({ searchParams }: HomeProps) {
           {(listNews.length > 0 ||
             gridHorizontalNews.length > 0 ||
             gridVerticalNews.length > 0) && (
-            <ApolloProvider>
-              <InfiniteNewsList
-                initialOffset={NEWS_LIMIT}
-                initialFeaturedOffset={FEATURED_NEWS_LIMIT}
-                totalLimit={TOTAL_LIMIT_SIZE}
-                categorySlug={categorySlug} // Lisää kategoria-parametri
-              />
-            </ApolloProvider>
+            <>
+              <section className={styles.adBannerSection}>
+                <AdBanner />
+              </section>
+
+              <ApolloProvider>
+                <InfiniteNewsList
+                  initialOffset={NEWS_LIMIT}
+                  initialFeaturedOffset={FEATURED_NEWS_LIMIT}
+                  totalLimit={TOTAL_LIMIT_SIZE}
+                  categorySlug={categorySlug} // Lisää kategoria-parametri
+                />
+              </ApolloProvider>
+            </>
           )}
         </main>
       );
@@ -192,15 +199,20 @@ export default async function Home({ searchParams }: HomeProps) {
           <NewsGridVertical newsList={gridVerticalNews} />
         </section>
       )}
-
       {news.length > 0 ? (
-        <ApolloProvider>
-          <InfiniteNewsList
-            initialOffset={NEWS_LIMIT}
-            initialFeaturedOffset={FEATURED_NEWS_LIMIT}
-            totalLimit={TOTAL_LIMIT_SIZE}
-          />
-        </ApolloProvider>
+        <>
+          <section className={styles.adBannerSection}>
+            <AdBanner />
+          </section>
+
+          <ApolloProvider>
+            <InfiniteNewsList
+              initialOffset={NEWS_LIMIT}
+              initialFeaturedOffset={FEATURED_NEWS_LIMIT}
+              totalLimit={TOTAL_LIMIT_SIZE}
+            />
+          </ApolloProvider>
+        </>
       ) : (
         <EndOfNewsComponent />
       )}

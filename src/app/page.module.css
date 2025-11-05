@@ -26,6 +26,10 @@
   /* padding: 2rem 0rem; */
 }
 
+.adBannerSection {
+  width: 100%;
+}
+
 @media (prefers-color-scheme: dark) {
   .page {
     --gray-rgb: 255, 255, 255;
