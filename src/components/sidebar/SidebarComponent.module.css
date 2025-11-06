@@ -23,11 +23,25 @@
 
 .logo {
   border-radius: 6px;
-  opacity: 0.9;
   transition: opacity 0.2s ease;
   width: 80px;
   height: auto;
 }
+
+.logotaru {
+  border-radius: 6px;
+  transition: opacity 0.2s ease;
+  width: 150px;
+  height: auto;
+}
+
+.logotaru2 {
+  border-radius: 6px;
+  transition: opacity 0.2s ease;
+  width: 200px;
+  height: auto;
+}
+
 
 .logo:hover {
   opacity: 1;
@@ -50,6 +64,14 @@
 .tagline {
   font-size: 0.85rem;
   color: #fbbf24;
+  font-weight: 500;
+  line-height: 1.3;
+  font-family: "Roboto", sans-serif;
+}
+
+.taglineTaru {
+  font-size: 0.85rem;
+  color: #0083aa;
   font-weight: 500;
   line-height: 1.3;
   font-family: "Roboto", sans-serif;
@@ -98,6 +120,22 @@
   padding: 0.8rem 1rem;
   border-radius: 4px;
   background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.ctaButtonTaru {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  background: #0083aa;
   color: #fff;
   font-size: 0.9rem;
   font-weight: 600;
