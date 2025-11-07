@@ -53,7 +53,7 @@ export default function Header() {
 
       <div className={styles.logoContainer}>
         <Link href="/" className={styles.logo}>
-          <LogoHologram />
+          <LogoHologram stickyActive={stickyActive} />
         </Link>
       </div>
 

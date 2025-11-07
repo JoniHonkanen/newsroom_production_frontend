@@ -1,5 +1,6 @@
 .layoutShell {
   position: relative;
+  padding-top: 15px;
 }
 
 .sidebarWrapper {

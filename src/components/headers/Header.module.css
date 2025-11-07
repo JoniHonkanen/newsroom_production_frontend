@@ -77,7 +77,6 @@
 /* Responsiivisuus: pienillä ruuduilla header ja logo pienemmiksi */
 @media (max-width: 600px) {
   .header {
-    height: 56px;
     padding: 0 2vw;
   }
   .logoContainer {
@@ -89,6 +88,7 @@
   .link {
     font-size: clamp(0.7rem, 3vw, 1.1rem);
     padding: 4px 1vw;
+    font-size: 14px;
   }
   .nav {
     gap: 2vw;
