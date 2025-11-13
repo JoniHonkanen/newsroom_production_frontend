@@ -11,7 +11,7 @@ export default function AdBanner() {
             Tekoälyn tuottamaa ajankohtaista uutisointia
           </h2>
           <p className={styles.description}>
-            Newsroom on GPT-LABin ja Tampereen yliopiston kehittämä kokeilu,
+            AI Newsroom on GPT-LABin ja Tampereen yliopiston kehittämä kokeilu,
             jossa tekoäly tuottaa uutisia reaaliajassa – haastattelee,
             kirjoittaa ja kuvit­taa artikkelit itse.
           </p>
