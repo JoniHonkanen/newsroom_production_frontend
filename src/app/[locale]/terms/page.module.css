@@ -1,0 +1,111 @@
+.container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  max-width: 800px;
+  background-color: rgba(26,26,26,.65);
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.contentArea {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-bottom: 25px;
+}
+
+.contentArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.contentArea::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.contentArea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.contentArea::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.section {
+  margin-bottom: 25px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.text {
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #e0e0e0;
+}
+
+.checkboxContainer {
+  margin-bottom: 20px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  color: #e0e0e0;
+  line-height: 1.5;
+}
+
+.checkbox {
+  margin-right: 10px;
+  margin-top: 3px;
+  min-width: 18px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #007bff;
+}
+
+.button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.buttonEnabled {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.buttonEnabled:hover {
+  background-color: #0056b3;
+}
+
+.buttonDisabled {
+  background-color: #555;
+  color: #999;
+  cursor: not-allowed;
+}
