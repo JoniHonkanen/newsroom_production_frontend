@@ -1,313 +1,89 @@
-import Head from 'next/head';
-import './about.css';
+import styles from './page.module.css';
 
 export default function AboutPage() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ResearchProject",
-    "name": "Tekoälyn johtama uutistoimitus",
-    "description": "Tampereen yliopiston tutkimusprojekti tekoälyn mahdollisuuksista ja rajoista journalismissa",
-    "url": "https://www.tuni.fi/fi/tutkimus/tekoalyn-johtama-uutistoimitus",
-    "sponsor": {
-      "@type": "Organization",
-      "name": "Media-alan tutkimussäätiö",
-      "url": "https://www.mediaalantutkimussaatio.fi/"
-    },
-    "parentOrganization": {
-      "@type": "EducationalOrganization",
-      "name": "Tampereen yliopisto",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Tampere",
-        "addressCountry": "FI"
-      },
-      "url": "https://www.tuni.fi"
-    },
-    "startDate": "2024",
-    "endDate": "2025",
-    "funding": {
-      "@type": "MonetaryGrant",
-      "amount": "98000",
-      "currency": "EUR"
-    },
-    "researcher": [
-      {
-        "@type": "Person",
-        "name": "Pekka Abrahamsson",
-        "jobTitle": "Professori, ohjelmistotekniikka",
-        "affiliation": "Tampereen yliopisto"
-      },
-      {
-        "@type": "Person", 
-        "name": "Laura Saarikoski",
-        "jobTitle": "Työelämäprofessori, journalistiikka",
-        "affiliation": "Tampereen yliopisto"
-      },
-      {
-        "@type": "Person",
-        "name": "Laura Ahva", 
-        "jobTitle": "Apulaisprofessori, journalistiikka",
-        "affiliation": "Tampereen yliopisto"
-      }
-    ]
-  };
-
   return (
-    <>
-      <Head>
-        <title>Tekoälyn johtama uutistoimitus - Tampereen yliopiston AI-journalismi tutkimusprojekti</title>
-        <meta name="description" content="Tampereen yliopiston poikkitieteellinen tutkimusprojekti selvittää tekoälyn rajat ja mahdollisuudet journalismissa. 98 000€ rahoitus Media-alan tutkimussäätiöltä 2024-2025." />
-        <meta name="keywords" content="tekoäly journalismi, AI uutistoimitus, Tampere yliopisto, GPT-Lab, media tutkimus, ohjelmistotekniikka, journalistiikan tutkimus" />
-        <meta name="geo.region" content="FI-16" />
-        <meta name="geo.placename" content="Tampere" />
-        <meta name="geo.position" content="61.4978;23.7610" />
-        <meta name="ICBM" content="61.4978, 23.7610" />
-        <meta property="og:title" content="Tekoälyn johtama uutistoimitus - AI-journalismi tutkimus" />
-        <meta property="og:description" content="Tampereen yliopiston tutkimusprojekti tekoälyn mahdollisuuksista journalismissa" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="fi_FI" />
-        <link rel="canonical" href="https://www.tuni.fi/fi/tutkimus/tekoalyn-johtama-uutistoimitus" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
-        />
-      </Head>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className={styles.mainTitle}>Tietoa projektista</h1>
 
-      <article>
-        <div className="page-intro">
-          <h1>Tekoälyn johtama uutistoimitus</h1>
-          <p className="subtitle">
-            Tampereen yliopiston poikkitieteellinen tutkimusprojekti tekoälyn mahdollisuuksista ja rajoista journalismissa
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Mikä projekti?</h2>
+          <p className={styles.text}>
+            Tekoälyn johtama uutistoimitus on Tampereen yliopiston Informaatioteknologian ja viestinnän 
+            tiedekunnan tutkimusprojekti, jossa rakennetaan ja testataan kokonaan tekoälyllä toimivaa, 
+            vuorokauden ympäri toimivaa uutistoimitusta. Projektissa tekoäly hoitaa päätoimittajan, 
+            uutispäällikön ja toimittajan roolit. Se tuottaa myös kuvia.
           </p>
-          <div className="meta-info">
-            <span>📍 Tampere, Suomi</span>
-            <span>🏛️ Tampereen yliopisto</span>
-            <span>📅 2024-2025</span>
-          </div>
-        </div>
+          <p className={styles.text}>
+            Tämä poikkitieteellinen tutkimus yhdistää ohjelmistotekniikan ja journalistiikan tieteenalat 
+            selvittääkseen tekoälyn kykyjä ja rajoja. Kysymys kuuluu: mihin suorituksiin tekoäly pystyy 
+            toimitustyön eri rooleissa yhtä laadukkaasti tai luotettavasti kuin ihminen, ja missä ihmisen 
+            lisäarvo on kiistaton?
+          </p>
+        </section>
 
-        <nav className="page-nav">
-          <h2>Sivun sisällys</h2>
-          <ul>
-            <li><a href="#projekti">Projektin kuvaus</a></li>
-            <li><a href="#tavoitteet">Tavoitteet</a></li>
-            <li><a href="#tutkimusryhma">Tutkimusryhmä</a></li>
-            <li><a href="#toteutus">Toteutus</a></li>
-            <li><a href="#yhteistyo">Yhteistyö</a></li>
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Mitä on tehty?</h2>
+          <p className={styles.text}>
+            Hankkeessa on kehitetty tekoälypohjaista ohjelmistoa, joka tuottaa uutisia. Uutisten raaka-aineena 
+            käytetään <a href="https://www.epressi.com/" target="_blank" rel="noopener noreferrer" className={styles.link}>ePressi-tiedotepalvelun</a> materiaaleja 
+            RSS-syötteen kautta. Ohjelmisto valikoi ja lähettää jatkokehittelyyn tiedotteita, joiden pohjalta 
+            koostetaan uutisia hakemalla verkosta lisätietoa, generoimalla jatkokysymyksiä sekä tekemällä 
+            sähköposti- ja puhelinhaastatteluita.
+          </p>
+          <p className={styles.text}>
+            Tämän ohjelmiston kehitystyön ja toimivuuden kautta puntaroidaan sekä tekoälyn tuomaa lisäarvoa 
+            että sen tuottamia riskejä journalistiselle prosessille.
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Tutkimusryhmä</h2>
+          <ul className={styles.teamList}>
+            <li>Pekka Abrahamsson, ohjelmistotekniikan professori</li>
+            <li>Laura Ahva, journalistiikan professori</li>
+            <li>Joni Honkanen, tutkimusassistentti</li>
+            <li>Riku Laine, tutkimusassistentti</li>
+            <li>Jaakko Suorsa, tutkimusassistentti</li>
+            <li>Sami Dadu, neuvonantaja</li>
+            <li>Laura Saarikoski, neuvonantaja</li>
           </ul>
-        </nav>
+        </section>
 
-        <section id="projekti">
-          <h2>Mikä on projekti?</h2>
-          <p>
-            <strong>Tekoälyn johtama uutistoimitus</strong> on <a href="https://www.tuni.fi" target="_blank" rel="noopener">Tampereen yliopiston</a> 
-            informaatioteknologian ja viestinnän tiedekunnan tutkimusprojekti, jossa rakennetaan kokonaan tekoälyllä 
-            toimiva, vuorokauden ympäri toimiva uutistoimitus. Projektissa tekoäly hoitaa kaikki toimituksen eri roolit 
-            päätoimittajasta toimittajaan ja tuottaa uutisia tarvittaessa kymmenillä eri kielillä.
-          </p>
-          <p>
-            Tämä <strong>poikkitieteellinen tutkimus</strong> yhdistää ohjelmistotekniikan ja journalistiikan tieteenalat 
-            selvittääkseen tekoälyn kyvyn rajat verrattuna ihmiseen vuonna 2025. Kysymys kuuluu: mihin suorituksiin 
-            tekoäly pystyy toimitustyön eri rooleissa yhtä laadukkaasti tai luotettavasti kuin ihminen, ja missä 
-            ihmisen lisäarvo on kiistaton?
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Journalistiikan tiimin rooli</h2>
+          <p className={styles.text}>
+            Journalistista työtä on mallinnettu prosessikuvauksina haastatteluiden avulla. Haastatteluiden 
+            avulla on pureuduttu toimitusten käytännön työhön, päätöksentekoprosesseihin ja eettiseen harkintaan 
+            ja arvioitu, mitä kaikkea tietoa journalistisesta prosessista täytyy viedä mukaan ohjelmistokehitykseen. 
+            Journalismin tutkijat myös arvioivat tuotettuja uutisia ja niiden journalistisuutta ja antavat suosituksia.
           </p>
         </section>
 
-        <section id="tavoitteet">
-          <h2>Tutkimustavoitteet ja keskeiset kysymykset</h2>
-          
-          <div className="opportunities-challenges">
-            <div className="opportunities">
-              <h3>Tekoälyn mahdollisuudet</h3>
-              <ul>
-                <li><strong>Paikallinen seuranta:</strong> Syrjäseutujen lautakuntatyön dokumentointi</li>
-                <li><strong>Globaali ulottuvuus:</strong> Ulkomaanuutisten tuottaminen paikoista, joihin ei ole varaa lähettää kirjeenvaihtajaa</li>
-                <li><strong>24/7 toiminta:</strong> Keskeytymatön uutisseuranta ja -tuotanto</li>
-                <li><strong>Monikielisyys:</strong> Sisällön tuottaminen kymmenillä kielillä</li>
-              </ul>
-            </div>
-            
-            <div className="challenges">
-              <h3>Kriittiset haasteet</h3>
-              <ul>
-                <li><strong>Journalistiset standardit:</strong> Eettisten periaatteiden noudattaminen</li>
-                <li><strong>Vastuukysymykset:</strong> Kuka vastaa virheistä tai väärästä tiedosta?</li>
-                <li><strong>Yhteiskunnalliset vaikutukset:</strong> Median demokratiatehtävän toteutuminen</li>
-                <li><strong>Laadunvarmistus:</strong> Luotettavuuden ja tarkkuuden mittaaminen</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="research-question">
-            <h3>Keskeinen tutkimuskysymys</h3>
-            <blockquote>
-              "Toimitustehtävien siirto tekoälylle on jo käynnissä suomalaisissa mediataloissa, mutta sen seuraukset 
-              ovat selvittämättä riippumattoman tutkimuksen keinoin. Tähän vastataan tässä projektissa."
-            </blockquote>
-          </div>
-        </section>
-
-        <section id="tutkimusryhma">
-          <h2>Asiantunteva tutkimusryhmä</h2>
-          <p>
-            Projektia johtavat <strong>kaksi kokeneutta professoria</strong> eri tieteenaloilta, mikä varmistaa 
-            tutkimuksen poikkitieteellisyyden ja syvällisyyden.
-          </p>
-          
-          <div className="team-grid">
-            <div className="team-leaders">
-              <h3>Projektin johtajat</h3>
-              <div className="person">
-                <strong>Prof. Pekka Abrahamsson</strong>
-                <span>Ohjelmistotekniikka • <a href="https://gpt-lab.eu" target="_blank" rel="noopener">GPT-Lab</a> perustaja</span>
-              </div>
-              <div className="person">
-                <strong>Prof. Laura Saarikoski</strong>
-                <span>Journalistiikan työelämäprofessori</span>
-              </div>
-            </div>
-            
-            <div className="team-members">
-              <h3>Tutkimustiimi</h3>
-              <div className="person">
-                <strong>Apul.prof. Laura Ahva</strong>
-                <span>Journalistiikka • <a href="mailto:laura.ahva@tuni.fi">laura.ahva@tuni.fi</a></span>
-              </div>
-              <div className="person">
-                <strong>Riku Laine</strong>
-                <span>Tutkimusassistentti</span>
-              </div>
-              <div className="person">
-                <strong>Jaakko Suorsa</strong>
-                <span>Tutkimusassistentti</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="advisors">
-            <h4>Neuvonantajat</h4>
-            <p>Sami Dadu ja Laura Saarikoski toimivat projektin neuvonantajina.</p>
-          </div>
-        </section>
-
-        <section id="toteutus">
-          <h2>Tieteellinen toteutus</h2>
-          
-          <div className="implementation-methods">
-            <div className="journalism-research">
-              <h3>Journalismin tutkimus</h3>
-              <p>
-                Journalistista työtä mallinnetaan <strong>systemaattisina prosessikuvauksina</strong> syvähaastatteluiden avulla. 
-                Tutkimus pureutuu käytännön työhön, päätöksentekoprosesseihin ja eettiseen harkintaan.
-              </p>
-              <ul>
-                <li>Haastattelut alan ammattilaisilta</li>
-                <li>Eettisen harkinnan prosessien mallintaminen</li>
-                <li>Tietolähteiden arvioinnin systematisointi</li>
-                <li>Uutiskriteerien dokumentointi</li>
-              </ul>
-            </div>
-            
-            <div className="technical-development">
-              <h3>Tekninen kehitys</h3>
-              <p>
-                Rakennetaan <strong>automaattinen artikkelinkirjoitusjärjestelmä</strong> ja visuaalinen 
-                hallintaympäristö tekoälyautomatiikan hallitsemiseen. Järjestelmä integroi useita tiedonkeruumenetelmiä.
-              </p>
-              <ul>
-                <li>Internet-lähteiden automaattinen analysointi</li>
-                <li>Monimodaalisten syötteiden käsittely</li>
-                <li>Journalistien työkalujen kehittäminen</li>
-                <li>Laadunvarmistuksen automatisoiminen</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section id="yhteistyo">
-          <h2>Yhteistyöverkosto</h2>
-          
-          <div className="partners">
-            <div className="partner">
-              <h3><a href="https://gpt-lab.eu" target="_blank" rel="noopener">GPT-Lab</a></h3>
-              <p>
-                Tampereen yliopistossa toimiva kansainvälinen laboratorio, joka keskittyy 
-                <strong>generatiivisen tekoälyn käytännöllisiin sovelluksiin</strong> ohjelmistotekniikassa.
-              </p>
-              <p className="additional-info">
-                Toiminta laajentuu GPT-Lab Nordics ja GPT-Lab Africa -haaroihin.
-              </p>
-            </div>
-            
-            <div className="partner">
-              <h3><a href="https://www.mediaalantutkimussaatio.fi" target="_blank" rel="noopener">Media-alan tutkimussäätiö</a></h3>
-              <p>
-                Projektin <strong>98 000 euron rahoittaja</strong>. Hanke on osa säätiön vuoden 2024 
-                tutkimusteemaa "tekoälyn johtaminen mediatalossa".
-              </p>
-              <p className="additional-info">
-                <a href="https://www.mediaalantutkimussaatio.fi/ajankohtaista/myonnetyt-apurahat/tampereen-yliopistolle-98-000-euroa-tutkimustukea-teemahankkeelle/" 
-                   target="_blank" rel="noopener">
-                  Lue lisää rahoituspäätöksestä
-                </a>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="timeline-impact">
-          <h2>Projektin aikataulu ja vaikuttavuus</h2>
-          <div className="stats">
-            <div className="stat">
-              <h3>Kesto</h3>
-              <span>2024-2025</span>
-            </div>
-            <div className="stat">
-              <h3>Rahoitus</h3>
-              <span>98 000€</span>
-            </div>
-            <div className="stat">
-              <h3>Julkaisu</h3>
-              <span>2025 loppu</span>
-            </div>
-          </div>
-          <p>
-            Tulokset julkaistaan vuoden 2025 lopussa ja tarjoavat käytännöllistä, 
-            tutkittua tietoa tekoälyn hyödyntämisestä journalismissa.
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Ohjelmistotekniikan tiimin rooli</h2>
+          <p className={styles.text}>
+            Ohjelmistotekniikan tiimi on rakentanut automaattisen artikkelinkirjoitusjärjestelmän ja visuaalisen 
+            hallintaympäristön tekoälyautomatiikan hallitsemiseen. Järjestelmä integroi useita tiedonkeruumenetelmiä. 
+            Se on myös kehittänyt ja tutkinut työnkulun automatisointia tekoälyavusteisesti.
           </p>
         </section>
 
-        <section className="expected-results">
-          <h2>Odotetut tulokset</h2>
-          <p>
-            Projektin lopputuloksena syntyy <strong>kattava analyysi tekoälyn kyvyistä</strong> 
-            toimitusprosessin eri vaiheissa perustuen käytännön kokeiluihin:
-          </p>
-          <ul>
-            <li><strong>Mitä tekoäly pystyy tekemään</strong> laadukkaasti ja luotettavasti</li>
-            <li><strong>Mihin tekoäly ei pysty</strong> tai ei sovellu</li>
-            <li><strong>Suositukset käytännön toteutukseen</strong> media-alan toimijoille</li>
-            <li><strong>Eettiset ja juridiset suuntaviivat</strong> tekoälyn käytölle journalismissa</li>
-          </ul>
-          <p className="final-note">
-            Tutkimus tarjoaa riippumatonta, tieteellistä näkökulmaa aiheeseen, joka on jo käytännössä 
-            muuttamassa suomalaista mediamaisemaa.
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Projektin aikataulu ja rahoitus</h2>
+          <p className={styles.text}>
+            Hanke toteutetaan vuoden 2025 aikana. Se on saanut rahoituksensa <a href="https://www.mediaalantutkimussaatio.fi/" target="_blank" rel="noopener noreferrer" className={styles.link}>Media-alan tutkimussäätiöltä</a>.
           </p>
         </section>
 
-        <footer>
-          <p>
-            Lisätietoja: <a href="https://www.tuni.fi/fi/tutkimus/tekoalyn-johtama-uutistoimitus">
-              www.tuni.fi/fi/tutkimus/tekoalyn-johtama-uutistoimitus
-            </a>
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Tulokset</h2>
+          <p className={styles.text}>
+            Projektin lopputuloksena syntyy analyysi tekoälyn kyvyistä toimitusprosessin eri vaiheissa 
+            perustuen käytännön kokeiluihin. Hanke antaa myös suosituksia media-alan toimijoille.
           </p>
-          <p>
-            📍 Tampereen yliopisto, Informaatioteknologian ja viestinnän tiedekunta, Tampere, Suomi
-          </p>
-        </footer>
-      </article>
-    </>
+        </section>
+      </div>
+    </div>
   );
 }
