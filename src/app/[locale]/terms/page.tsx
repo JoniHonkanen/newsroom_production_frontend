@@ -1,16 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
 export default function TermsPage() {
   const [accepted, setAccepted] = useState(false);
-  const router = useRouter();
 
-  const handleAccept = async () => {
-    document.cookie = 'terms_accepted=true; path=/; max-age=31536000';
-    router.push('/');
+  const handleAccept = () => {
+    document.cookie = 'terms_accepted=true; path=/; max-age=31536000; SameSite=Lax';
+    window.location.href = '/';
   };
 
   return (
